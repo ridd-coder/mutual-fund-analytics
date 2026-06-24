@@ -1,0 +1,13 @@
+risk = nav_history.groupby(
+    "scheme_code"
+)["daily_return"].std().reset_index()
+
+risk.columns = [
+    "scheme_code",
+    "volatility"
+]
+
+risk.to_csv(
+    "data/raw/risk_metrics.csv",
+    index=False
+)

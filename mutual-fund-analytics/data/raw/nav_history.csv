@@ -1,0 +1,29 @@
+import requests
+import pandas as pd
+
+schemes = {
+    "SBI Bluechip":119551,
+    "ICICI Bluechip":120503,
+    "Nippon Large Cap":118632,
+    "Axis Bluechip":119092,
+    "Kotak Bluechip":120841
+}
+
+all_nav = []
+
+for fund, code in schemes.items():
+
+    url = f"https://api.mfapi.in/mf/{code}"
+
+    data = requests.get(url).json()
+
+    df = pd.DataFrame(data["data"])
+
+    df["scheme_code"] = code
+    df["fund_name"] = fund
+
+    all_nav.append(df)
+
+nav_history = pd.concat(all_nav)
+
+nav_history.to_csv("data/raw/nav_history.csv", index=False)

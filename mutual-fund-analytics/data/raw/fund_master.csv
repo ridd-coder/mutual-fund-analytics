@@ -1,0 +1,24 @@
+import pandas as pd
+
+fund_master = pd.DataFrame({
+    "scheme_code":[119551,120503,118632,119092,120841],
+    "fund_name":[
+        "SBI Bluechip",
+        "ICICI Bluechip",
+        "Nippon Large Cap",
+        "Axis Bluechip",
+        "Kotak Bluechip"
+    ],
+    "fund_house":[
+        "SBI MF",
+        "ICICI Prudential MF",
+        "Nippon MF",
+        "Axis MF",
+        "Kotak MF"
+    ],
+    "category":["Equity"]*5,
+    "subcategory":["Large Cap"]*5,
+    "risk_grade":["High"]*5
+})
+
+fund_master.to_csv("data/raw/fund_master.csv", index=False)

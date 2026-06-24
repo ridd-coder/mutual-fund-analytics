@@ -1,0 +1,8 @@
+latest_nav = nav_history.groupby(
+    "scheme_code"
+).first().reset_index()
+
+latest_nav.to_csv(
+    "data/raw/latest_nav.csv",
+    index=False
+)
